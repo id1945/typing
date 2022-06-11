@@ -60,9 +60,6 @@ export class AppComponent implements OnInit {
 
     // Clean
     e.target.value = '';
-
-    // audio play
-    this.playAudioJS('typing/assets/success.mp3', 1);
   }
 
   /**
@@ -76,6 +73,8 @@ export class AppComponent implements OnInit {
         const value = e?.target?.value?.trim();
         const equal = m?.value === value;
         if (m.active) {
+          // audio play
+          this.playAudioJS(`typing/assets/${equal ? 'success' : 'wrong'}.mp3`, 1);
           return { ...m, status: equal ? 'label-default' : 'label-danger' };
         } else {
           return m;
