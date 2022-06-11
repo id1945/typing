@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 
 interface Typing {
   value: string;
@@ -8,11 +8,14 @@ interface Typing {
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  templateUrl: `./app.component.html`,
   styleUrls: ['./app.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements OnInit {
+
+  @ViewChild('welcomeRef', { static: true }) welcomeRef!: ElementRef;
+
   /**
    * Declare variable
    */
@@ -24,13 +27,13 @@ export class AppComponent implements OnInit {
    * Init lifecycle
    */
   ngOnInit(): void {
-    // audio play
-    this.playAudioJS(`assets/welcome.mp3`, 1);
     // init data
     this.initData();
   }
-
+  
   initData() {
+    // play welcome
+    this.playAudioJS(`assets/welcome.mp3?v=${Date.now()}`, 1);
     /**
      * Convert text to array
      * Random item
@@ -126,15 +129,15 @@ export class AppComponent implements OnInit {
    * @param {*} volume: number
    */
   playAudioJS(path: string, volume: number) {
-    let audio = new Audio();
+    const audio = new Audio();
     audio.currentTime = 0;
+    audio.autoplay = true;
     audio.src = path;
     audio.volume = volume;
     audio.load();
     audio.play().catch((error) => {
       console.log('Exception play audio: issue', error);
     });
-    return audio;
   }
 
   /**
@@ -142,23 +145,22 @@ export class AppComponent implements OnInit {
    * @param {*} volume: number
    */
   playAudioHtmlRestart(path: string, volume: number) {
-    // let audio = ...; // Declare a local variable
+    // const audio = this.audioRef.nativeElement as HTMLAudioElement; // Declare a local variable
     // audio.currentTime = 0;
     // audio.volume = volume;
     // audio.src = path;
-    // audio.play().catch(function () {
-    //   console.log('Exception play audio: issue');
+    // audio.load();
+    // audio.play().catch((error) => {
+    //   console.log('Exception play audio: issue', error);
     // });
-    // return audio;
   }
 
   /**
    * Stop audio html
    */
   stopAudioHtml() {
-    // let audio = ...; // Declare a local variable
+    // const audio = ...; // Declare a local variable
     // audio.src = '';
     // audio.currentTime = 0;
-    // return audio;
   }
 }
