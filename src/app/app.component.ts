@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
     e.target.value = '';
 
     // audio play
-    this.playAudioJS('typing/assets/bombom.mp3', 1);
+    this.playAudioJS('typing/assets/success.mp3', 1);
   }
 
   /**
