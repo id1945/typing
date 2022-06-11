@@ -113,11 +113,12 @@ export class AppComponent implements OnInit {
    */
   playAudioJS(path: string, volume: number) {
     let audio = new Audio();
+    audio.currentTime = 0;
     audio.src = path;
     audio.volume = volume;
     audio.load();
-    audio.play().catch(function () {
-      console.log('Exception play audio: issue');
+    audio.play().catch((error) => {
+      console.log('Exception play audio: issue', error);
     });
     return audio;
   }
