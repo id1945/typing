@@ -24,6 +24,13 @@ export class AppComponent implements OnInit {
    * Init lifecycle
    */
   ngOnInit(): void {
+    // init data
+    this.initData();
+    // audio play
+    this.playAudioJS(`assets/welcome.mp3`, 1);
+  }
+
+  initData() {
     /**
      * Convert text to array
      * Random item
