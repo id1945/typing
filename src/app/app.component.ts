@@ -58,6 +58,16 @@ export class AppComponent implements OnInit {
       }
     });
 
+    // audio play
+    for (const [i, item] of this.data.entries()) {
+      const value = e?.target?.value?.trim();
+      const previous = this.data[i != 0 ? i - 1 : 0];
+      const equal = previous?.value === value;
+      if (item.active) {
+        this.playAudioJS(`assets/${equal ? 'success' : 'wrong'}.mp3`, 1);
+      }
+    }
+
     // Clean
     e.target.value = '';
   }
@@ -73,8 +83,6 @@ export class AppComponent implements OnInit {
         const value = e?.target?.value?.trim();
         const equal = m?.value === value;
         if (m.active) {
-          // audio play
-          this.playAudioJS(`typing/assets/${equal ? 'success' : 'wrong'}.mp3`, 1);
           return { ...m, status: equal ? 'label-default' : 'label-danger' };
         } else {
           return m;
