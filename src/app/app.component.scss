@@ -14,13 +14,14 @@
 
 .label-danger {
   @extend .label;
-  background-color: #fa4040;
+  color: #000;
+  background-color: #ff1b1b;
 }
 
 .label-success {
   @extend .label;
-  color: #000;
-  background-color: green;
+  color: green;
+  background-color: #c9c9c9;
 }
 
 .graydark-box {
