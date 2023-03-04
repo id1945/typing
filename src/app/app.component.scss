@@ -17,6 +17,12 @@
   background-color: #fa4040;
 }
 
+.label-success {
+  @extend .label;
+  color: #000;
+  background-color: green;
+}
+
 .graydark-box {
   background-color: #d1d1d188;
   border-radius: 5px;
