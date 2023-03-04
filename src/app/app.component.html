@@ -1,0 +1,74 @@
+<div class="container text-center">
+  <img src="assets/Finger_position_on_a_keyboard.png" class="w-75">
+</div>
+
+<div class="d-flex justify-content-center">
+  <h1 class="type mx-5">Luyện gõ 10 ngón nhanh!<span>&nbsp;</span></h1>
+</div>
+
+<div class="d-flex justify-content-center">
+  <div class="col-sx-10 col-md-10 col-lg-8 col-xl-6 col xxl-6">
+
+    <div class="gray-box text-center" *ngIf="selected.title && selected.src || selected.title">
+      <h4 class="type d-flex justify-content-center">{{selected.title}}</h4>
+      <div class="type graydark-box" *ngIf="selected.introduce">
+        <h5 class="text-break">{{selected.introduce}}</h5>
+      </div>
+      <img [src]="selected.src" width="50%">
+    </div>
+  
+    <div class="gray-box h3" [style.wordBreak]="'break-word'">
+      <span *ngFor="let item of dataMap; trackByFn">
+        <span class="px-1" [class]="item?.status">
+          {{ item.value }}
+        </span>
+      </span>
+
+      <div class="input-group input-group-lg my-3">
+        <input autofocus type="text" class="form-control form-lg" (keyup.space)="onSpace($event)" (keyup.enter)="onSpace($event)" (input)="onInput($event)" placeholder="Luyện gõ 10 ngón nhanh">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button" (click)="onRandom()">Random</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gray-box">
+      <div class="d-flex justify-content-start align-items-center my-3">
+        <div class="col-1">
+          <label for="lenght">Split:</label>
+        </div>
+        <div class="col-2">
+          <input type="number" [(ngModel)]="split" class="form-control">
+        </div>
+        <div class="col-1">
+          <label for="lenght">Lenght:</label>
+        </div>
+        <div class="col-2">
+          <input type="number" [(ngModel)]="length" class="form-control" id="lenght">
+        </div>
+      </div>
+
+      <ng-container *ngFor="let item of lession.slice(15); let odd = odd; let even = even; let i = index">
+        <button class="btn m-2" [class.btn-success]="odd" [class.btn-info]="even" (click)="onLession(item)">Lestion {{i + 1}}.{{i + 1}}</button>
+      </ng-container>
+
+      <hr>
+      
+      <ng-container *ngFor="let item of lession.slice(0,15); let odd = odd; let even = even; let i = index">
+        <button class="btn m-2" [class.btn-success]="odd" [class.btn-info]="even" (click)="onLession(item)">Full {{i + 1}}</button>
+      </ng-container>
+    </div>
+    
+    <div class="input-group input-group-lg">
+      <textarea class="form-control" [(ngModel)]="dataText" rows="5" (change)="onUpdate()" [style.background]="'beige'"></textarea>
+    </div>
+
+    <!-- License -->
+    <!-- Copyright -->
+    <div class="text-center my-3">
+      <a href="https://github.com/id1945/typing/blob/main/LICENSE">MIT License</a>
+      <p>Copyright (c) 2022 DaiDH</p>
+    </div>
+
+  </div>
+</div>

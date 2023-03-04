@@ -1,0 +1,36 @@
+* {
+  font-family: Lato;
+}
+
+.label {
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+.label-default {
+  @extend .label;
+  background-color: #c9c9c9;
+}
+
+.label-danger {
+  @extend .label;
+  background-color: #fa4040;
+}
+
+.graydark-box {
+  background-color: #d1d1d188;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.gray-box {
+  background-color: #c9c9c988;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.text-break {
+  white-space: pre-wrap;
+}
