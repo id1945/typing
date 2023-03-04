@@ -154,7 +154,7 @@ export class AppComponent implements OnInit {
    * @param e 
    */
   onSpace(e: any) {
-    const index = this.dataMap?.map(el => el.status).lastIndexOf('text-success' || 'text-danger');
+    const index = this.dataMap?.findIndex(el => el.active == true) - 1;
 
     // audio play
     for (const [i, item] of this.dataMap.entries()) {
