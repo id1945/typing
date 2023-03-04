@@ -70,7 +70,7 @@ export class AppComponent implements OnInit {
   /**
    * initData
    */
-  initData(dataMap = this.dataText?.replace(/(\s+)/g,' ')?.split(' ')) {
+  initData(dataMap = this.dataText?.replace(/(\s+)/g,' ')?.trim()?.split(' ')) {
     this.dataMap = dataMap.map((m: string, i: Number) => ({
       value: m.trim(),
       active: i == 0 ? true : false,
