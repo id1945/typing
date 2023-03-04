@@ -70,7 +70,7 @@ export class AppComponent implements OnInit {
   /**
    * initData
    */
-  initData(dataMap = this.dataText?.replace(/(\s+)/g,' ')?.trim()?.split(' ')) {
+  initData(dataMap = this.dataTextList) {
     this.dataMap = dataMap.map((m: string, i: Number) => ({
       value: m.trim(),
       active: i == 0 ? true : false,
@@ -116,6 +116,15 @@ export class AppComponent implements OnInit {
     this.lession.push(new Lession('5%tgb6^yhn', '', 'Bài 3131 - Tập Tay Trái', 'Trong bài này chúng ta sẽ luyện ngón trỏ trái và phải'));
   }
 
+  
+  get dataTextTrim(): string {
+    return this.dataText?.replace(/(\s+)/g,' ')?.trim();
+  }
+  
+  get dataTextList(): string[] {
+    return this.dataTextTrim?.split(' ');
+  }
+
   /**
    * Select lession
    * @param item 
@@ -123,8 +132,8 @@ export class AppComponent implements OnInit {
   onLession(item: Lession): void {
     this.selected = item;
     this.dataText = this.randomText(item.key, this.length);
-    this.initData(this.dataText?.replace(/(\s+)/g,' ')?.trim()?.split(' '));
-    localStorage.setItem('typing-data', this.dataText?.replace(/(\s+)/g,' ')?.trim()?.trim());
+    this.initData(this.dataTextList);
+    localStorage.setItem('typing-data', this.dataTextTrim);
   }
 
   /**
@@ -210,7 +219,7 @@ export class AppComponent implements OnInit {
    * onRandom
    */
   onRandom() {
-    this.initData(this.shuffleArray(this.dataText?.replace(/(\s+)/g,' ')?.trim()?.split(' ')));
+    this.initData(this.shuffleArray(this.dataTextList));
     this.playAudioJS(`assets/random.mp3?v=${Date.now()}`, 1);
   }
 
@@ -219,7 +228,7 @@ export class AppComponent implements OnInit {
    */
   onUpdate() {
     // store
-    localStorage.setItem('typing-data', this.dataText?.replace(/(\s+)/g,' ')?.trim()?.trim());
+    localStorage.setItem('typing-data', this.dataTextTrim);
     // load store
     this.initStore();
     // init data
