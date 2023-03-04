@@ -123,8 +123,8 @@ export class AppComponent implements OnInit {
   onLession(item: Lession): void {
     this.selected = item;
     this.dataText = this.randomText(item.key, this.length);
-    this.initData(this.dataText?.split(' '));
-    localStorage.setItem('typing-data', this.dataText?.replace(/(\s+)/g,' ')?.trim());
+    this.initData(this.dataText?.replace(/(\s+)/g,' ')?.trim()?.split(' '));
+    localStorage.setItem('typing-data', this.dataText?.replace(/(\s+)/g,' ')?.trim()?.trim());
   }
 
   /**
@@ -210,7 +210,7 @@ export class AppComponent implements OnInit {
    * onRandom
    */
   onRandom() {
-    this.initData(this.shuffleArray(this.dataText?.replace(/(\s+)/g,' ')?.split(' ')));
+    this.initData(this.shuffleArray(this.dataText?.replace(/(\s+)/g,' ')?.trim()?.split(' ')));
     this.playAudioJS(`assets/random.mp3?v=${Date.now()}`, 1);
   }
 
@@ -219,7 +219,7 @@ export class AppComponent implements OnInit {
    */
   onUpdate() {
     // store
-    localStorage.setItem('typing-data', this.dataText?.replace(/(\s+)/g,' ')?.trim());
+    localStorage.setItem('typing-data', this.dataText?.replace(/(\s+)/g,' ')?.trim()?.trim());
     // load store
     this.initStore();
     // init data
